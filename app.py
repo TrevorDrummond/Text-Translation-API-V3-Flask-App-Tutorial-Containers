@@ -8,12 +8,20 @@ app.config['JSON_AS_ASCII'] = False
 def index():
     return render_template('index.html')
 
+@app.route('/detect-text', methods=['POST'])
+def detect_text():
+    data = request.get_json()
+    text_input = data['text']
+    response = translate.get_detectlanguage(text_input)
+    return jsonify(response)
+
 @app.route('/translate-text', methods=['POST'])
 def translate_text():
     data = request.get_json()
     text_input = data['text']
     translation_output = data['to']
-    response = translate.get_translation(text_input, translation_output)
+    translation_input = data['from']
+    response = translate.get_translation(text_input, translation_output, translation_input)
     return jsonify(response)
 
 @app.route('/sentiment-analysis', methods=['POST'])

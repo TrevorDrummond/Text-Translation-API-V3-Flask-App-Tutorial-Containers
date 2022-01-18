@@ -2,11 +2,35 @@ $(function() {
   //Translate text with flask route
   $("#translate").on("click", function(e) {
     e.preventDefault();
+    var detectLanguage = ""
     var translateVal = document.getElementById("text-to-translate").value;
     var languageVal = document.getElementById("select-language").value;
-    var translateRequest = { 'text': translateVal, 'to': languageVal }
+    var translateRequest = { 'text': translateVal, 'to': languageVal, 'from': detectLanguage }
+    var detectRequest = { 'text': translateVal}
 
     if (translateVal !== "") {
+      $.ajax({
+        async: false,
+        url: '/detect-text',
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        dataType: 'json',
+        data: JSON.stringify(detectRequest),
+        success: function(data) {
+            detectLanguage = data.detectedLanguage.iso6391Name
+            translateRequest.from = detectLanguage
+            document.getElementById("detected-language-result").textContent = data.detectedLanguage.name;
+            if (document.getElementById("detected-language-result").textContent !== ""){
+              document.getElementById("detected-language").style.display = "block";
+            }
+            document.getElementById("confidence").textContent = data.detectedLanguage.confidenceScore;
+          }
+      });
+
+    if (detectLanguage !== "")
+    {
       $.ajax({
         url: '/translate-text',
         method: 'POST',
@@ -26,8 +50,10 @@ $(function() {
           }
         }
       });
+    }
     };
   });
+
   // Convert text-to-speech
   $("#text-to-speech").on("click", function(e) {
     e.preventDefault();
