@@ -56,6 +56,10 @@ $(function() {
             }
             document.getElementById("confidence").textContent = data[i].detectedLanguage.score;
           }
+        },
+        error: function(xhr, status, error){
+          var errorMessage = xhr.status + ': ' + xhr.responseText
+          document.getElementById("translation-result").textContent = errorMessage;
         }
       });
     }
