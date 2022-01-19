@@ -1,6 +1,6 @@
-# Tutorial: Build a Flask app with Azure Cognitive Services
+# Code Forked from - tutorial: Build a Flask app with Azure Cognitive Services
 
-With this sample, you'll build a Flask web app that uses Azure Cognitive Services to translate text, analyze sentiment, and synthesize translated text into speech. If you run into any issues, let us know by submitting and issue.
+With this sample, you'll build a Flask web app that uses Azure Cognitive Service containers to translate text. If you run into any issues, let us know by submitting and issue.
 
 ## What is Flask?
 
@@ -11,6 +11,10 @@ For those of you who want to deep dive after this tutorial here are a few helpfu
 * [Flask documentation](http://flask.pocoo.org/)
 * [Flask for Dummies - A Beginner's Guide to Flask](https://codeburst.io/flask-for-dummies-a-beginners-guide-to-flask-part-uno-53aec6afc5b1)
 
+
+## What are Azure Cognitive Services containers?
+[Azure Cognitive Services Containers Overview](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-container-support)
+
 ## Prerequisites
 
 Let's review the software and subscription keys that you'll need for this tutorial.
@@ -19,10 +23,12 @@ Let's review the software and subscription keys that you'll need for this tutori
 * [Git tools](https://git-scm.com/downloads)
 * An IDE or text editor, such as [Visual Studio Code](https://code.visualstudio.com/) or [Atom](https://atom.io/)  
 * [Chrome](https://www.google.com/chrome/browser/) or [Firefox](https://www.mozilla.org/firefox)
-* A **Translator Text** subscription key in the **West US** region.
-* A **Text Analytics** subscription key in the **West US** region.
-* A **Speech Services** subscription key in the **West US** region.
+* A **Language Detection** container running in your environment.
+* A **Language Translator** container running in your environment.
 
+##Register for the gated preview
+Access to the Language Translator container requires approval. Request approval via this link:
+[Application for Translator (standard) container](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR1160WOYu0dAjKAuCahR9pRUNzVLRDdUMUNYMlkwVlREQkJPN01PN0haUSQlQCN0PWcu)
 ## Create an account and subscribe to resources
 
 As previously mentioned, you're going to need three subscription keys for this tutorial. This means that you need to create a resource within your Azure account for:
@@ -117,21 +123,20 @@ Next we need to install Flask. Flask handles the routing for our web app, and al
 
 Now that you're all set up, follow these instructions to run the sample. If you'd like a detailed walkthrough of the Python, HTML, and Javascript that pulls this app together, see [Tutorial: Build a Flask app with Cognitive Services](https://docs.microsoft.com/azure/cognitive-services/translator/tutorial-flask-translation-and-synthesis).
 
-1. Open `translate.py` and add your Translator Text subscription key.
-2. Open `sentiment.py` and add your Text Analytics subscription key.
-3. Open `synthesize.py` and your Speech Services subscription key.
-4. Run:
+1. Open `translate.py` and add the path to your detect and translate container endpoints.
+2. Run:
    ```
    flask run
    ```
-5. Navigate to the URL provided and test your app.
+3. Navigate to the URL provided and test your app.
+4. Code for sentiment detection has been left in the codebase, however it has not been adapted to run in a containerised environment due to it's limited language support.
 
 ## Clean up
 
-When you're done with the sample, don't forget to remove your subscription keys. Consider reading from environment variables.
+When you're done with the sample, don't forget to shut down your containers.
 
 ## Next steps
 
 * [Translator Text API reference](https://docs.microsoft.com/azure/cognitive-services/Translator/reference/v3-0-reference)
 * [Text Analytics API reference](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c7)
-* [Text-to-speech API reference](https://docs.microsoft.com/azure/cognitive-services/speech-service/rest-text-to-speech)
+

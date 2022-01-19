@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, jsonify, request
-import translate, sentiment, synthesize
+import translate, sentiment
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -33,13 +33,3 @@ def sentiment_analysis():
     output_lang =  data['outputLanguage']
     response = sentiment.get_sentiment(input_text, input_lang, output_text, output_lang)
     return jsonify(response)
-
-@app.route('/text-to-speech', methods=['POST'])
-def text_to_speech():
-    data = request.get_json()
-    text_input = data['text']
-    voice_font = data['voice']
-    tts = synthesize.TextToSpeech(text_input, voice_font)
-    tts.get_token()
-    audio_response = tts.save_audio()
-    return audio_response
