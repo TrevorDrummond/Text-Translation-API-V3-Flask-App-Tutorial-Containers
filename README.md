@@ -1,4 +1,5 @@
-# Code Forked from - tutorial: Build a Flask app with Azure Cognitive Services
+# Build a Flask app with Azure Cognitive Services Containers
+>Repository Forked from - [tutorial: Build a Flask app with Azure Cognitive Services](https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Flask-App-Tutorial)
 
 With this sample, you'll build a Flask web app that uses Azure Cognitive Service containers to translate text. If you run into any issues, let us know by submitting and issue.
 
@@ -26,27 +27,43 @@ Let's review the software and subscription keys that you'll need for this tutori
 * A **Language Detection** container running in your environment.
 * A **Language Translator** container running in your environment.
 
-##Register for the gated preview
+## Register for the gated preview
 Access to the Language Translator container requires approval. Request approval via this link:
 [Application for Translator (standard) container](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR1160WOYu0dAjKAuCahR9pRUNzVLRDdUMUNYMlkwVlREQkJPN01PN0haUSQlQCN0PWcu)
+
 ## Create an account and subscribe to resources
 
-As previously mentioned, you're going to need three subscription keys for this tutorial. This means that you need to create a resource within your Azure account for:
+You're going to need two subscription keys for this tutorial. This means that you need to create a resource within your Azure account for:
 
 * Translator Text
 * Text Analytics
-* Speech Services
 
 Use [Create a Cognitive Services Account in the Azure portal](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account) for step-by-step instructions to create resources.
 
-**IMPORTANT NOTE**: For this tutorial, please create your resources in the West US region. If using a different region, you'll need to adjust the base URL in each of your Python files.
+**IMPORTANT NOTE**: Cognitive services endpoints will be used for metering and translation model downloads only. 
+
+## Pull the latest container images for detect and translate
+```
+docker pull mcr.microsoft.com/azure-cognitive-services/textanalytics/language
+```
+```
+docker pull mcr.microsoft.com/azure-cognitive-services/translator/text-translation
+```
+
+## Start the containers in your environment
+Follow the guides below to setup local containers for:
+
+* [Language detection](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/language-detection/how-to/use-containers)
+
+* [Translator](https://docs.microsoft.com/en-us/Azure/cognitive-services/translator/containers/translator-how-to-install-container#:~:text=%20Install%20and%20run%20Translator%20containers%20%28preview%29%20,and%20recommended...%205%20Next%20steps.%20%20More%20)
+
 
 ## Clone the sample
 
 This is pretty straightforward, clone this repository:
 
 ```
-git clone https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Flask-App-Tutorial.git
+git clone https://github.com/TrevorDrummond/Text-Translation-API-V3-Flask-App-Tutorial-Containers.git
 ```
 
 ## Create and activate your virtual environment with `virtualenv`
