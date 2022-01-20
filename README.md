@@ -138,7 +138,7 @@ Next we need to install Flask. Flask handles the routing for our web app, and al
 
 ## Run the sample
 
-Now that you're all set up, follow these instructions to run the sample. If you'd like a detailed walkthrough of the Python, HTML, and Javascript that pulls this app together, see [Tutorial: Build a Flask app with Cognitive Services](https://docs.microsoft.com/azure/cognitive-services/translator/tutorial-flask-translation-and-synthesis).
+Now that you're all set up, follow these instructions to run the sample. If you'd like a detailed walkthrough of the Python, HTML, and Javascript that pulls this app together, see [Tutorial: Build a Flask app with Cognitive Services](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/tutorial-build-flask-app-translation-synthesis).
 
 1. Open `translate.py` and add the path to your detect and translate container endpoints.
 2. Run:
